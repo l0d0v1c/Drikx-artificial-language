@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drikx — an engineered language built for thinking</title>
+<meta name="description" content="Drikx (pratil) is an engineered language whose grammar makes cognitive shortcuts costly to utter: obligatory evidentiality, no passive, an audible morphology. Grammar, corpus, oracle, and a fine-tuned translator.">
+<link rel="canonical" href="https://l0d0v1c.github.io/Drikx-artificial-language/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://l0d0v1c.github.io/Drikx-artificial-language/">
+<meta property="og:title" content="Drikx — an engineered language built for thinking">
+<meta property="og:description" content="A language whose grammar makes cognitive shortcuts costly to utter: obligatory evidentiality, no passive, an audible morphology. Grammar, corpus, oracle, and translator.">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --stone:#d9d3c4;        /* limestone */
+    --stone-deep:#cfc8b6;
+    --stone-hi:#e6e1d5;     /* sunlit face */
+    --ink:#2b2722;          /* charcoal */
+    --fired:#241f1a;        /* fired clay, the dark band */
+    --fired-2:#1c1813;
+    --ocre:#8f3b2a;         /* pigment rubbed into the incision */
+    --ocre-lit:#b8674f;     /* the same pigment, lit */
+    --gloss:#6e685a;        /* faded olive */
+    --gloss-lo:#8b8474;
+    --rule:#a89f8c;
+    --rule-dim:#bcb4a1;
+
+    --serif:"EB Garamond",Iowan Old Style,Palatino,Georgia,serif;
+    --display:"Cormorant Garamond",Iowan Old Style,Palatino,Georgia,serif;
+    --sans:ui-sans-serif,"Segoe UI",system-ui,-apple-system,sans-serif;
+    --taktil:"Segoe UI Historic","Noto Sans Old Italic","Segoe UI Symbol","Noto Sans Runic",var(--serif);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+  body{
+    background:
+      radial-gradient(ellipse at 22% 8%, rgba(255,255,255,.4), transparent 52%),
+      radial-gradient(ellipse at 80% 96%, rgba(90,80,60,.16), transparent 58%),
+      var(--stone);
+    color:var(--ink);
+    font-family:var(--serif);
+    font-size:clamp(1.02rem,.55rem + 1.05vw,1.18rem);
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  .wrap{max-width:900px;margin-inline:auto;padding-inline:clamp(1.2rem,5vw,2.4rem)}
+  .band{padding-block:clamp(3rem,7vw,5.6rem)}
+  .band + .band{border-top:1px solid var(--rule)}
+
+  /* ---- shared type ---- */
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--gloss);
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:600;font-size:clamp(1.7rem,1rem + 2.6vw,2.7rem);
+    letter-spacing:.01em;line-height:1.08;
+    margin-top:.5rem;
+  }
+  .lede{max-width:38ch}
+  .measure{max-width:60ch}
+  .rom{font-family:var(--sans);font-size:.82em;letter-spacing:.03em;color:var(--ocre)}
+  .taktil{
+    font-family:var(--taktil);
+    color:var(--ocre);letter-spacing:.08em;word-spacing:.14em;line-height:1.9;
+    text-shadow:0 1px 0 rgba(255,255,255,.4);overflow-wrap:anywhere;
+  }
+  a{color:inherit}
+  a:focus-visible{outline:2px solid var(--ocre);outline-offset:3px;border-radius:2px}
+
+  /* ============ HERO ============ */
+  .hero{
+    text-align:center;
+    padding-block:clamp(3.4rem,9vw,6.4rem) clamp(2.6rem,6vw,4.4rem);
+    border-bottom:1px solid var(--rule);
+  }
+  .hero .eyebrow{display:block}
+  .hero h1{
+    font-family:var(--display);
+    font-weight:500;font-variant:small-caps;
+    font-size:clamp(3.4rem,2rem + 9vw,7rem);
+    letter-spacing:.06em;line-height:.98;
+    margin:.7rem 0 .1rem;
+  }
+  .hero .whisper{
+    font-family:var(--serif);font-style:italic;color:var(--gloss);
+    font-size:clamp(1rem,.7rem + .9vw,1.28rem);
+    max-width:30ch;margin:0 auto .2rem;
+  }
+  .hero .thesis{
+    max-width:44ch;margin:1.7rem auto 0;
+    font-size:clamp(1.06rem,.8rem + .8vw,1.32rem);
+  }
+  .hero .thesis b{color:var(--ocre);font-weight:600}
+
+  /* the evidential triplet — the signature */
+  .epigraph{
+    margin:clamp(2.4rem,6vw,3.8rem) auto 0;
+    max-width:560px;
+    border-block:1px solid var(--rule);
+    padding-block:clamp(1.4rem,4vw,2.2rem);
+  }
+  .rung{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:.15rem;
+    padding-block:.85rem;
+  }
+  .rung + .rung{border-top:1px dotted var(--rule-dim)}
+  .rung .taktil{font-size:clamp(1.4rem,1rem + 2vw,2rem)}
+  .rung .rom{font-size:.82rem}
+  .rung .en{font-style:italic;color:var(--gloss);font-size:.96rem}
+  .rung--cru .taktil{font-size:clamp(1.6rem,1rem + 2.6vw,2.4rem);font-weight:600;letter-spacing:.12em}
+  .rung--cru .en{color:var(--ocre)}
+  .epigraph-cap{
+    font-family:var(--sans);font-size:.7rem;letter-spacing:.06em;
+    color:var(--gloss);margin-top:1rem;font-style:normal;
+  }
+  .colophon{color:var(--ocre);letter-spacing:.6em;font-size:1.1rem;margin-top:1.6rem}
+
+  .navlinks{
+    margin-top:2.4rem;display:flex;gap:.5rem 1.6rem;flex-wrap:wrap;justify-content:center;
+    font-family:var(--sans);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;
+  }
+  .navlinks a{text-decoration:none;color:var(--gloss);padding-bottom:2px;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+  .navlinks a:hover{color:var(--ocre);border-color:var(--ocre)}
+
+  /* ============ WHY / mechanism ============ */
+  .why h2{max-width:16ch}
+  .why .measure{margin-top:1.2rem}
+  .why .measure + .measure{margin-top:1rem}
+  .pull{
+    font-family:var(--display);font-style:italic;
+    font-size:clamp(1.4rem,1rem + 2vw,2rem);line-height:1.25;
+    color:var(--ink);max-width:22ch;margin:clamp(2rem,5vw,3rem) 0 0;
+  }
+  .pull::before{content:"“";color:var(--ocre);margin-right:.05em}
+  .pull::after{content:"”";color:var(--ocre)}
+
+  /* ============ CONSTRAINTS ============ */
+  .rules{display:grid;gap:0;margin-top:2.4rem}
+  .rule-row{
+    display:grid;grid-template-columns:minmax(6.5rem,10rem) 1fr;
+    gap:clamp(1rem,4vw,2.4rem);
+    padding-block:clamp(1.2rem,3vw,1.7rem);
+    align-items:baseline;
+  }
+  .rule-row + .rule-row{border-top:1px solid var(--rule)}
+  .rule-mark{
+    font-family:var(--sans);font-size:1rem;color:var(--ocre);
+    letter-spacing:.02em;font-weight:600;
+  }
+  .rule-mark .sub{display:block;font-weight:400;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gloss);margin-top:.35rem}
+  .rule-body h3{font-family:var(--display);font-weight:600;font-size:1.28rem;line-height:1.15}
+  .rule-body p{margin-top:.35rem;color:var(--ink);max-width:52ch}
+  .rule-body em{color:var(--ocre);font-style:italic}
+
+  /* ============ ANATOMY ============ */
+  .anatomy{text-align:center}
+  .word{
+    display:flex;justify-content:center;flex-wrap:wrap;gap:.5rem;
+    margin-top:2rem;
+  }
+  .morph{
+    flex:0 1 210px;min-width:150px;
+    border:1px solid var(--rule);
+    padding:1.1rem 1rem 1.2rem;
+    background:linear-gradient(180deg,var(--stone-hi),var(--stone-deep));
+    box-shadow:0 12px 26px -22px rgba(43,39,34,.7);
+  }
+  .morph .g-tak{font-family:var(--taktil);color:var(--ocre);font-size:1.9rem;line-height:1}
+  .morph .g-rom{font-family:var(--sans);font-size:1.05rem;letter-spacing:.04em;margin-top:.55rem;color:var(--ink)}
+  .morph .g-slot{font-family:var(--sans);font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gloss);margin-top:.7rem}
+  .morph .g-mean{font-style:italic;color:var(--gloss);font-size:.92rem;margin-top:.3rem}
+  .anatomy .caption{margin-top:1.8rem;color:var(--gloss);font-style:italic;max-width:46ch;margin-inline:auto}
+  .anatomy .caption b{color:var(--ocre);font-style:normal;font-weight:600}
+
+  /* ============ GENESIS ============ */
+  .genesis .measure{margin-top:1.2rem}
+  .genesis .measure + .measure{margin-top:1rem}
+  .genesis .name{font-variant:small-caps;letter-spacing:.03em;color:var(--ocre)}
+
+  /* ============ EXAMPLE (dark band) ============ */
+  .specimen{
+    background:
+      radial-gradient(ellipse at 30% 0%, rgba(184,103,79,.14), transparent 55%),
+      radial-gradient(ellipse at 80% 100%, rgba(0,0,0,.35), transparent 60%),
+      var(--fired);
+    color:var(--stone);
+    border-top:1px solid #000;border-bottom:1px solid #000;
+  }
+  .specimen .eyebrow{color:var(--gloss-lo)}
+  .specimen h2{color:var(--stone-hi)}
+  .specimen .intro{margin-top:1.2rem;color:#cfc6b3;max-width:56ch}
+  .specimen .strophe{
+    padding-block:clamp(1.4rem,4vw,2rem);
+    border-top:1px solid rgba(168,159,140,.28);
+  }
+  .specimen .strophe:first-of-type{border-top:none;margin-top:1.6rem}
+  .specimen .fr{font-size:clamp(1.06rem,.8rem + .8vw,1.28rem);color:var(--stone-hi);max-width:36em}
+  .specimen .taktil{color:var(--ocre-lit);font-size:clamp(1.1rem,.9rem + 1.1vw,1.4rem);line-height:2;margin-top:.9rem;text-shadow:none}
+  .specimen .rom{color:var(--gloss-lo);margin-top:.5rem}
+  .specimen .note{font-family:var(--sans);font-size:.78rem;color:#a59d8b;font-style:italic;margin-top:.5rem;max-width:52ch}
+  .specimen .note b{color:var(--ocre-lit);font-style:normal;font-weight:600}
+  .specimen .more{margin-top:2.4rem;font-family:var(--sans);font-size:.82rem;letter-spacing:.04em}
+  .specimen .more a{color:var(--ocre-lit);text-decoration:none;border-bottom:1px solid rgba(184,103,79,.5);padding-bottom:2px}
+  .specimen .more a:hover{color:var(--stone-hi);border-color:var(--stone-hi)}
+
+  /* ============ RESOURCES ============ */
+  .res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;margin-top:2.4rem;background:var(--rule);border:1px solid var(--rule)}
+  .res{
+    background:var(--stone);
+    padding:1.5rem 1.4rem 1.6rem;
+    text-decoration:none;color:inherit;display:block;
+    transition:background .2s;
+  }
+  .res:hover{background:var(--stone-hi)}
+  .res:hover .res-go{color:var(--ocre);gap:.6rem}
+  .res .res-k{font-family:var(--sans);font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gloss)}
+  .res h3{font-family:var(--display);font-weight:600;font-size:1.4rem;margin-top:.5rem;line-height:1.1}
+  .res p{font-size:.94rem;color:var(--ink);margin-top:.5rem}
+  .res-go{font-family:var(--sans);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gloss);margin-top:1rem;display:inline-flex;align-items:center;gap:.4rem;transition:color .2s,gap .2s}
+
+  /* ============ FOOTER ============ */
+  footer{
+    background:var(--fired-2);color:#b4ab97;
+    font-family:var(--sans);font-size:.8rem;line-height:1.6;
+  }
+  footer .wrap{padding-block:clamp(2.6rem,6vw,3.8rem)}
+  footer .glyph{font-family:var(--taktil);color:var(--ocre-lit);font-size:1.5rem;letter-spacing:.3em}
+  footer p{max-width:62ch;margin-top:1rem}
+  footer .exonym{color:#cfc6b3;font-family:var(--serif);font-size:1.02rem;font-style:italic;max-width:52ch}
+  footer a{color:var(--ocre-lit);text-decoration:none;border-bottom:1px solid rgba(184,103,79,.4)}
+  footer a:hover{color:#e6e1d5;border-color:#e6e1d5}
+  footer .cite{margin-top:1.6rem;color:#8b8474;font-size:.76rem}
+  footer .foot-links{margin-top:1.6rem;display:flex;gap:1.4rem;flex-wrap:wrap}
+
+  /* entrance */
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{opacity:0;transform:translateY(10px);animation:incise .7s ease forwards}
+    .hero h1{animation:incise .8s ease .05s both}
+    .hero .thesis{animation:incise .8s ease .2s both}
+    .epigraph{animation:incise .9s ease .35s both}
+    @keyframes incise{to{opacity:1;transform:none}}
+  }
+
+  @media (max-width:560px){
+    .rule-row{grid-template-columns:1fr;gap:.5rem}
+    .rule-mark{font-size:1.05rem}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Pratil · an engineered language</span>
+      <h1>Drikx</h1>
+      <p class="whisper">a language built not to be spoken by a nation, but to embody an idea</p>
+      <p class="thesis">Its grammar makes cognitive shortcuts <b>costly to utter</b>. You cannot blur where a claim comes from, erase who did a thing, or pass off a belief as a fact — without paying for it in a morpheme, a stress, or an ejective you must spit.</p>
+
+      <div class="epigraph" aria-label="One proposition, three sources">
+        <div class="rung">
+          <div class="taktil" aria-hidden="true">𐌔ᛆ𐌕ᛆ𐌌ᚢ ᛭</div>
+          <div class="rom">sat-a-mu</div>
+          <div class="en">“It exists — I have seen it.”</div>
+        </div>
+        <div class="rung">
+          <div class="taktil" aria-hidden="true">𐌔ᛆ𐌕ᛆ𐌓ᛁ ᛭</div>
+          <div class="rom">sat-a-ri</div>
+          <div class="en">“It exists — I am told.”</div>
+        </div>
+        <div class="rung rung--cru">
+          <div class="taktil" aria-hidden="true">𐌔ᛆ𐌕ᛆ𐌙ᛆ𐌓ᛆ ᛭</div>
+          <div class="rom">sat-a-kʼara</div>
+          <div class="en">“It exists — I merely believe it.”</div>
+        </div>
+        <p class="epigraph-cap">The same thought. Three sources. Each one is a different word — and the last is heavy, ejective, and stressed, so you cannot mutter it.</p>
+      </div>
+
+      <div class="colophon" aria-hidden="true">᛫ ᛭ ᛫</div>
+
+      <nav class="navlinks">
+        <a href="#why">Why</a>
+        <a href="#rules">The rules</a>
+        <a href="#anatomy">The verb</a>
+        <a href="#genesis">Genesis</a>
+        <a href="#specimen">A specimen</a>
+        <a href="#resources">Grammar &amp; code</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== WHY ===================== -->
+    <section class="band why" id="why">
+      <div class="wrap">
+        <span class="eyebrow reveal">The idea</span>
+        <h2 class="reveal">A grammar that charges interest on laziness.</h2>
+        <p class="measure reveal">Every natural language lets a speaker take shortcuts: blur the source of a claim, delete the agent of an act, assert a belief as though it were a fact. Drikx removes the shortcuts — not by banning them, but by making each one <em>expensive to say</em>.</p>
+        <p class="measure reveal">Assert something and the grammar demands its source, in the same breath as the verb. Report an action and it demands who did it; there is no passive to hide behind. State a routine and you cannot dress it up as progress; the aspect is fixed. The surprising part is structural: the same handful of decisions shape the phonology, the syntax, the writing system — and the silences.</p>
+        <p class="pull reveal">the model proposes, the oracle disposes</p>
+      </div>
+    </section>
+
+    <!-- ===================== CONSTRAINTS ===================== -->
+    <section class="band" id="rules">
+      <div class="wrap">
+        <span class="eyebrow">Seven hard constraints</span>
+        <h2>What Drikx will not let you say.</h2>
+
+        <div class="rules">
+          <div class="rule-row">
+            <div class="rule-mark">-mu · -ka · -ri · -kʼara<span class="sub">Evidential</span></div>
+            <div class="rule-body">
+              <h3>Every assertion names its source.</h3>
+              <p>Four ranked degrees — <em>seen</em>, <em>deduced</em>, <em>reported</em>, <em>merely believed</em> — one of which must sit on every finite clause. A bare assertion is simply ungrammatical.</p>
+            </div>
+          </div>
+          <div class="rule-row">
+            <div class="rule-mark">tʼu<span class="sub">The agent</span></div>
+            <div class="rule-body">
+              <h3>No passive, no impersonal.</h3>
+              <p>The doer of an act is obligatory. An unknown doer gets an explicit pronoun — <em>tʼu</em>, “someone-I-don’t-know” — which forces the inferential. Responsibility cannot be grammatically erased.</p>
+            </div>
+          </div>
+          <div class="rule-row">
+            <div class="rule-mark">-si / -tu<span class="sub">Aspect</span></div>
+            <div class="rule-body">
+              <h3>Routine is not progress.</h3>
+              <p>Repetitive <em>-si</em> (cycle, upkeep) and sequential <em>-tu</em> (ordered steps toward a new state) are different grammar and cannot be swapped. <em>stir-si</em> is to patrol; <em>stir-tu</em> is to conquer.</p>
+            </div>
+          </div>
+          <div class="rule-row">
+            <div class="rule-mark">VSO<span class="sub">Word order</span></div>
+            <div class="rule-body">
+              <h3>The action before the agent.</h3>
+              <p>Verb-initial, with the order that comes with it: prepositions, noun before genitive. The deed leads; the doer follows.</p>
+            </div>
+          </div>
+          <div class="rule-row">
+            <div class="rule-mark">pʼ · tʼ · kʼ<span class="sub">Phonology</span></div>
+            <div class="rule-body">
+              <h3>The doubtful word sounds doubtful.</h3>
+              <p>Three vowels, stops everywhere, and one marked <em>ejective</em> series that never appears in an honest root — it is reserved for epistemically degraded morphology, like belief and privation. The suspect word is one you have to spit.</p>
+            </div>
+          </div>
+          <div class="rule-row">
+            <div class="rule-mark">C · V<span class="sub">The boundary</span></div>
+            <div class="rule-body">
+              <h3>You can hear the grammar.</h3>
+              <p>Every lexical word ends on a consonant; every grammatical word and affix ends on a vowel. The seam between meaning and machinery is audible without a dictionary.</p>
+            </div>
+          </div>
+          <div class="rule-row">
+            <div class="rule-mark">—<span class="sub">Register</span></div>
+            <div class="rule-body">
+              <h3>No flattery, no consensus.</h3>
+              <p>No honorifics, no formal “you.” “Everyone says so” is just the reportative — there is no valorising form that turns a crowd into proof.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ANATOMY ===================== -->
+    <section class="band anatomy" id="anatomy">
+      <div class="wrap">
+        <span class="eyebrow">One template</span>
+        <h2>The finite verb, in three slots.</h2>
+        <div class="word" role="img" aria-label="skim-a-mu: see, neutral aspect, direct evidential">
+          <div class="morph">
+            <div class="g-tak" aria-hidden="true">𐌔𐌊ᛁ𐌌</div>
+            <div class="g-rom">skim</div>
+            <div class="g-slot">Stem</div>
+            <div class="g-mean">“see”</div>
+          </div>
+          <div class="morph">
+            <div class="g-tak" aria-hidden="true">ᛆ</div>
+            <div class="g-rom">-a-</div>
+            <div class="g-slot">Aspect</div>
+            <div class="g-mean">neutral</div>
+          </div>
+          <div class="morph">
+            <div class="g-tak" aria-hidden="true">𐌌ᚢ</div>
+            <div class="g-rom">-mu</div>
+            <div class="g-slot">Evidential</div>
+            <div class="g-mean">“I saw it”</div>
+          </div>
+        </div>
+        <p class="caption"><b>skim-a-mu</b> — “I see it.” Drop the evidential and it stops being an assertion: it becomes a question or a command. The empty source-slot <em>is</em> the question.</p>
+      </div>
+    </section>
+
+    <!-- ===================== GENESIS ===================== -->
+    <section class="band genesis" id="genesis">
+      <div class="wrap">
+        <span class="eyebrow">Genesis</span>
+        <h2>Designed by a clone, verified by a machine.</h2>
+        <p class="measure">Drikx was not specified by a human linguist but by <span class="name">pseudoLuc</span> — a large-language-model clone-persona of Luc E. Brunet, produced and studied in a paper on machine identity. The persona fixed the design constraints; the rest turned that specification into a working system: a rule engine, an executable oracle, a lexicon grown to ~2,957 entries, a certified parallel corpus, and a fine-tuned translator.</p>
+        <p class="measure">It stands in the lineage of engineered and philosophical languages — from Hildegard of Bingen’s twelfth-century <em>Lingua Ignota</em> onward — tongues built to embody a thought rather than to serve a people.</p>
+        <p class="measure">The language is written twice: once as a reference grammar for humans, once as executable rules for machines. That second form is an <em>oracle</em> — for any string, it decides with a reason whether it is well-formed Drikx. No sentence enters the corpus unless the oracle proves it. From that certified corpus, a 350-million-parameter model learned to translate into Drikx and to choose the right evidential almost every time.</p>
+      </div>
+    </section>
+
+    <!-- ===================== SPECIMEN ===================== -->
+    <section class="band specimen" id="specimen">
+      <div class="wrap">
+        <span class="eyebrow">A specimen · Epic of Gilgamesh, Tablet VI</span>
+        <h2>Gilgamesh refuses the goddess.</h2>
+        <p class="intro">Ishtar offers marriage; the king of Uruk refuses, and lists — metaphor after metaphor — her inconstancy toward her lovers. The whole invective is a single judgment, and the grammar carries its tone. Four incisions, read here in romanised Drikx.</p>
+
+        <div class="strophe">
+          <p class="fr">“No, I will not take you for a wife.”</p>
+          <p class="taktil" aria-hidden="true">𐌗ᛆ ᛫ 𐌊ᚢ𐌓𐌕ᛆ𐌌ᚢ ᛫ 𐌍ᛆ ᛫ 𐌕ᛆ ᛫ 𐌕ᛁ ᛫ 𐌗ᚢ ᛫ 𐌌ᛁ𐌋ᛆ𐌓 ᛭</p>
+          <p class="rom">xa kurt-a-mu na ta ti xu milar</p>
+          <p class="note">The whole refusal lives in <b>xa</b>. One’s own will is the one thing stated in the direct evidential (<b>-mu</b>): he saw it in himself.</p>
+        </div>
+
+        <div class="strophe">
+          <p class="fr">“You are the battering ram that pounds the city walls.”</p>
+          <p class="taktil" aria-hidden="true">𐌔ᛆ𐌕ᛆ𐌊ᛆ ᛫ 𐌕ᛁ ᛫ 𐌊𐌓ᛆ𐌊ᛁ𐌋 ᛫ 𐌊ᛁ ᛫ 𐌊𐌓ᛆ𐌊𐌔ᛁ𐌊ᛆ ᛫ 𐌕ᛆ ᛫ 𐌗ᛁ𐌋𐌐ᛆ𐌍 ᛫ 𐌓ᚢ ᛭</p>
+          <p class="rom">sat-a-ka ti krakil ki krak-si-ka ta xilpan ru</p>
+          <p class="note">The pounding is all in the <b>-si</b>: striking in repetition, not once. Judgment, so the evidential is inferential (<b>-ka</b>).</p>
+        </div>
+
+        <div class="strophe">
+          <p class="fr">“You are the waterskin that spills over the one who carries it.”</p>
+          <p class="taktil" aria-hidden="true">𐌔ᛆ𐌕ᛆ𐌊ᛆ ᛫ 𐌕ᛁ ᛫ 𐌔𐌕ᛆ𐌊ᛁ𐌋 ᛫ 𐌊ᛁ ᛫ 𐌗ᚢ𐌋𐌍ᛆ𐌊ᛆ ᛫ 𐌔𐌕ᛆ𐌊 ᛫ ᛁ ᛫ 𐌊ᚢ ᛫ 𐌗ᚢ ᛫ 𐌊𐌓ᚢ𐌊ᛆ𐌓 ᛫ ᛁ ᛫ 𐌊ᚢ ᛭</p>
+          <p class="rom">sat-a-ka ti stakil ki xuln-a-ka stak i ku xu krukar i ku</p>
+          <p class="note">No passive, no middle voice: it is not “spilled upon” — it is the water that <b>flows</b> (<b>xuln</b>, a spontaneous process). No agent is hidden.</p>
+        </div>
+
+        <div class="strophe">
+          <p class="fr">“Is there a single one of your lovers whom you ever truly loved?”</p>
+          <p class="taktil" aria-hidden="true">𐌇ᛆ ᛫ 𐌔ᛆ𐌕ᛆ ᛫ 𐌍ᛆ𐌕 ᛫ 𐌕ᛁ𐌓𐌐ᛆ𐌓 ᛫ ᛁ ᛫ 𐌕ᛁ ᛫ 𐌊ᛁ ᛫ 𐌐ᛆ ᛫ 𐌕ᛁ𐌓𐌐ᛆ ᛫ 𐌕ᛁ ᛫ 𐌔ᛆ ᛫ 𐌇ᛆ𐌓𐌕 ᛫ 𐌓ᛁ𐌊𐌕</p>
+          <p class="rom">ha sat-a nat tirpar i ti ki pa tirp-a ti sa hart rikt</p>
+          <p class="note">A question drops its evidential slot and takes no closing <b>᛭</b> — the missing mark is where the answer belongs. “Truly,” <b>sa hart rikt</b>: “from a true heart.”</p>
+        </div>
+
+        <p class="more">Read all twelve incisions, set in English, Drikx, and the <em>taktil</em> script → <a href="Gilgamesh's%20reply%20to%20Ishtar%20—%20English%20·%20Drikx%20·%20taktil.html">the full stele</a></p>
+      </div>
+    </section>
+
+    <!-- ===================== RESOURCES ===================== -->
+    <section class="band" id="resources">
+      <div class="wrap">
+        <span class="eyebrow">Grammar &amp; code</span>
+        <h2>Everything the language is made of.</h2>
+        <div class="res-grid">
+          <a class="res" href="drikx-grammar.pdf">
+            <div class="res-k">Reference grammar · PDF</div>
+            <h3>The Drikx Grammar</h3>
+            <p>A full descriptive grammar in English — phonology, morphology, syntax, glossed texts, paradigms, and a bilingual lexicon, typeset as linguists set a newly described tongue.</p>
+            <span class="res-go">Open the PDF →</span>
+          </a>
+          <a class="res" href="https://github.com/l0d0v1c/Drikx-artificial-language">
+            <div class="res-k">Source · GitHub</div>
+            <h3>The repository</h3>
+            <p>The public home of the language: grammar, corpus, oracle, model, and skill — with the story of how each piece was built.</p>
+            <span class="res-go">Browse on GitHub →</span>
+          </a>
+          <a class="res" href="https://github.com/l0d0v1c/Drikx-artificial-language/tree/main/drikx">
+            <div class="res-k">Oracle · Python</div>
+            <h3>The rule engine</h3>
+            <p>A dependency-free oracle that validates, glosses, and generates Drikx, plus a deterministic French→Drikx translator. The arbiter that certifies every corpus pair.</p>
+            <span class="res-go">Read the code →</span>
+          </a>
+          <a class="res" href="https://github.com/l0d0v1c/Drikx-artificial-language/tree/main/corpus">
+            <div class="res-k">Corpus · JSONL</div>
+            <h3>The parallel corpus</h3>
+            <p>~100k French ⇄ Drikx pairs with morpheme gloss and evidential, aspect, and clause-type labels — every line proven well-formed by the oracle.</p>
+            <span class="res-go">See the data →</span>
+          </a>
+          <a class="res" href="https://github.com/l0d0v1c/Drikx-artificial-language/tree/main/adapters/lfm2-drikx-v6">
+            <div class="res-k">Model · LoRA adapter</div>
+            <h3>The translator</h3>
+            <p>A ~6 MB LoRA adapter that teaches LiquidAI’s LFM2-350M to translate into and out of Drikx — trained locally with Apple MLX.</p>
+            <span class="res-go">Get the adapter →</span>
+          </a>
+          <a class="res" href="Gilgamesh's%20reply%20to%20Ishtar%20—%20English%20·%20Drikx%20·%20taktil.html">
+            <div class="res-k">Specimen · taktil</div>
+            <h3>Gilgamesh’s reply</h3>
+            <p>The language shown at length — Tablet VI in English, Drikx, and the incised <em>taktil</em> script, twelve strophes pressed into stone.</p>
+            <span class="res-go">Read the stele →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="wrap">
+      <div class="glyph" aria-hidden="true">𐌐𐌓ᛆ𐌕ᛁ𐌋 ᛭</div>
+      <p class="exonym"><em>Drikx</em> is an exonym — it cannot be said in Drikx, which has no /d/ and no such coda. Its speakers, were there any, would call it simply <em>pratil</em>: “the tongue, the speech-tool.”</p>
+      <p>Designed by <strong>pseudoLuc</strong>, the reflective LLM model of Luc E. Brunet, in the tradition of engineered and philosophical languages. This site is a doorway; the grammar, corpus, oracle, and translator live in the repository.</p>
+      <p class="cite">Luc E. Brunet. <em>Le problème difficile de l’identité : évaluation d’un clone LLM.</em> JITIPEE 9(2), 2025. <a href="https://doi.org/10.52497/jitipee.v9i2.381">doi:10.52497/jitipee.v9i2.381</a></p>
+      <div class="foot-links">
+        <a href="https://github.com/l0d0v1c/Drikx-artificial-language">GitHub</a>
+        <a href="drikx-grammar.pdf">Grammar (PDF)</a>
+        <a href="#specimen">Specimen</a>
+      </div>
+      <p class="cite">Taktil needs a historic font (Segoe UI Historic, Noto Sans Old Italic) to display; the romanisation carries the meaning without it. — <em>for those who would say whence they know.</em></p>
+    </div>
+  </footer>
+
+</body>
+</html>

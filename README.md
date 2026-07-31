@@ -19,6 +19,8 @@ This repository is the public home of the language: the **reference grammar**, a
 | [`drikx-grammar.pdf`](drikx-grammar.pdf) | **The Drikx Language — A Reference Grammar of a Language Built for Thinking.** A full descriptive grammar in English (phonology, morphology, syntax, semantics, glossed texts, paradigms, and a bilingual lexicon), typeset in the style linguists use for a previously undescribed tongue. |
 | [`Gilgamesh's reply to Ishtar — English · Drikx · taktil.pdf`](Gilgamesh's%20reply%20to%20Ishtar%20—%20English%20·%20Drikx%20·%20taktil.pdf) | A trilingual **specimen**: Gilgamesh's refusal of the goddess Ishtar (*Epic of Gilgamesh*, Tablet VI), set in English, Drikx (romanised, with gloss and commentary), and *taktil* — twelve incisions pressed into clay. |
 | [`corpus/`](corpus/) | A French ⇄ Drikx parallel corpus with morpheme-level gloss and evidential/aspect labels, in JSONL. |
+| [`drikx/`](drikx/) | The **oracle**: a pure-Python rule engine that validates, glosses, and generates Drikx, plus a deterministic French→Drikx rule translator. This is the arbiter that certifies the corpus — *the model proposes, the oracle disposes.* |
+| [`dict/`](dict/) | Bilingual dictionaries (French⇄Drikx) as JSON and Markdown, used by the rule translator and for lookup. |
 | [`adapters/lfm2-drikx-v6/`](adapters/lfm2-drikx-v6/) | A LoRA adapter that teaches [LiquidAI **LFM2-350M**](https://huggingface.co/LiquidAI/LFM2-350M) to translate into and out of Drikx. |
 | [`drikx-traduction.skill`](drikx-traduction.skill) | A packaged **Claude skill** (Agent Skill) for translating, glossing, transliterating, and extending Drikx. Contains the phonology, grammar, writing-system tables, design constraints, and the full lexicon as CSV. |
 
@@ -105,6 +107,67 @@ The source language of the pairs is **French**; the grammar PDF is in **English*
 
 ---
 
+## The oracle
+
+`drikx/` is the language written as executable rules — a rule-based **oracle** that decides, for any string, whether it is well-formed Drikx and, if not, exactly why. It is the project's arbiter of truth: every pair in the corpus was admitted only after the oracle proved it grammatical. *The model proposes, the oracle disposes.*
+
+It is a dependency-free, pure-Python package (spaCy is needed only for the French rule translator, below).
+
+| Function | What it does |
+|---|---|
+| `validate(sentence) -> Report` | decides grammaticality across four layers and returns a `Report` (`ok` + coded `Issue`s) |
+| `gloss(sentence) -> str` | Leipzig-style interlinear gloss |
+| `generate(clause) -> str` | rebuilds the surface string from a `Clause` AST |
+| `validate_lexeme(ipa, pos, …)` | the oracle at the entry level, for growing the lexicon safely |
+| `check_phonotactics(word)` | syllabifies and checks onsets, codas, and ejective placement |
+
+Each rejection carries a specific diagnostic code, grouped in four layers:
+
+- **Phonotactics** — syllabification, licit onset/coda clusters, ejectives barred from lexical roots, the two epenthesis rules (`/r/` breaks a hiatus, `/a/` breaks a cluster at a morpheme boundary).
+- **Verbal morphology** — the obligatory `STEM-ASPECT-EVIDENTIAL` template, aspect allomorphy (`-si`/`-tu` → `-asi`/`-atu` after a complex coda), a single evidential slot.
+- **Syntax** — VSO order, obligatory agent (no passive, no impersonal), `ta` before objects, future ⇒ `-ka`, unknown-agent `tʼu` ⇒ `-ka`, no evidential on questions or imperatives.
+- **The lexical/grammatical boundary** — lexical words end in a consonant, grammatical words in a vowel.
+
+```python
+from drikx import validate, gloss
+
+print(bool(validate("skim-a-mu na ta silp")))   # True
+print(gloss("skim-a-mu na ta silp"))
+# → voir-NEUT-DIR 1SG ACC chat
+
+bad = validate("skim-a na ta silp")             # aspect present, evidential missing
+print(bool(bad), bad.codes())
+# → False ['MISSING_EVIDENTIAL']
+```
+
+By default the oracle loads its lexicon from `Dricks-spec/03-lexique.csv` (the reference lexicon). Point it at a larger one — e.g. the 2,957-entry `Dricks-spec/lexique_v2.csv`, or the Claude skill's `references/lexique.csv` (same columns: `ipa,pos,translation,grammar,derivation,notes`) — by passing a `Lexicon`:
+
+```python
+from drikx import validate, Lexicon
+
+lex = Lexicon("Dricks-spec/lexique_v2.csv")
+validate("skim-a-mu na ta silp", lex)
+```
+
+### The rule translator (French → Drikx)
+
+`drikx/fr2drikx.py` is a deterministic, LLM-free French→Drikx translator — the "Volet B" pipeline that built part of the corpus. It parses French with spaCy, maps content words through `dict/fr-drikx.json`, reorders to VSO, places the particles, aspect, and default (direct) evidential, then **lets the oracle validate the result**. Its policy is high-precision, low-recall: any sentence with an uncovered word or an unhandled construction is *discarded, never approximated*. Scope is declarative clauses (subject + verb + direct object + simple obliques), present/past/future, affirmative/negative.
+
+```python
+from drikx.fr2drikx import Translator
+
+tr = Translator()                       # needs spaCy + the fr_core_news_sm model
+out = tr.translate("Je vois un chat.")
+print(out.drikx if out else "(écartée)")
+# → skim-a-mu na ta silp
+```
+
+```bash
+pip install spacy && python -m spacy download fr_core_news_sm
+```
+
+---
+
 ## The translation model
 
 `adapters/lfm2-drikx-v6/` is a **LoRA** adapter fine-tuned on the corpus above using [Apple **MLX**](https://github.com/ml-explore/mlx) (`mlx-lm`). It is a ~6 MB adapter, not a full model — you load it on top of the base model.
@@ -163,7 +226,7 @@ print(to_drikx("Cet enfant a marché jusqu'à cette maison hier."))
 
 The corpus was built around French prompts, so phrase requests in French (`Traduis en Drikx : …` / `Traduis en français : …`) for best results.
 
-> **Note.** A 350M-parameter model trained on a synthetic corpus is a *demonstration*, not an oracle. For rigorous or edge-case translation, prefer the reference grammar and the Claude skill, which enforce the evidential chain and the no-passive rule sentence by sentence.
+> **Note.** A 350M-parameter model trained on a synthetic corpus is a *demonstration*, not an oracle. For rigorous or edge-case translation, prefer the reference grammar, the [`drikx/` oracle](#the-oracle) — which decides grammaticality programmatically — or the Claude skill, all of which enforce the evidential chain and the no-passive rule sentence by sentence.
 
 ---
 

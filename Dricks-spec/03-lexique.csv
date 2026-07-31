@@ -1,0 +1,147 @@
+ipa,pos,translation,grammar,derivation,notes
+takt,v,"trancher / décider / clarifier / démolir",radical verbal,racine,"grappe : le geste net qui sépare ; impératif takt ! attesté"
+stir,v,"marcher / avancer / explorer",radical verbal,racine,"REP = routine, SEQ = conquête (grammaire 1.1)"
+skim,v,"voir / percevoir / vérifier",radical verbal,racine,"racine épistémique de rang DIR"
+prat,v,"parler / dire / annoncer",radical verbal,racine,
+stark,v.stat,"être lourd / massif / important",verbe statif,racine,"grappe : peser / compter / importer"
+kust,v,"savoir / connaître",radical verbal,racine,"nouvelle racine (expansion)"
+tikt,v,"penser / raisonner / modéliser",radical verbal,racine,"nouvelle racine (expansion) ; distinct de skim (percevoir) et kust (savoir)"
+krus,v,"briser / rompre / pulvériser",radical verbal,racine,"nouvelle racine (expansion) ; la rupture, pas la coupe nette (takt)"
+klap,v,"saisir / tenir / faire",radical verbal,racine,"item sonore É1, sens assigné ; grappe de la main"
+malt,v,"manger / consommer",radical verbal,racine,"nouvelle racine (expansion)"
+sunk,v,"dormir / reposer",radical verbal,racine,"nouvelle racine (expansion)"
+nilt,v,"vivre",radical verbal,racine,"nouvelle racine (expansion)"
+murt,v,"mourir",radical verbal,racine,"nouvelle racine (expansion)"
+sat,v,"être / exister",radical verbal (copule),racine,"nominale : sat-a-EVID ; « exister est une raison d'être suffisante »"
+rikt,v.stat,"être vrai / droit / aligné",verbe statif,racine,"nouvelle racine (expansion)"
+xip,v.stat,"être petit / faible",verbe statif,racine,"nouvelle racine (expansion) ; antonyme lexical de stark"
+nark,n,"homme / personne",nom,racine,
+silp,n,"chat",nom,racine,
+purk,n,"maison / abri",nom,racine,
+kram,n,"pierre / masse",nom,racine,"item sonore É1, sens assigné"
+ktal,n,"feu / énergie",nom,racine,"item sonore É1, sens assigné"
+turs,n,"eau / flux",nom,racine,"item sonore É1, sens assigné"
+xurt,n,"chemin / voie / méthode",nom,racine,"item sonore É1, sens assigné"
+parn,n,"corps / chair",nom,racine,"nouvelle racine (expansion)"
+pulk,n,"foule / multitude",nom,racine,"nouvelle racine (expansion)"
+kan,pro.int,"qui",interrogatif lexical,racine,"finale C : lexical ; en tête de phrase, pas d'évidentiel (2.6)"
+mit,pro.int,"quoi / quel",interrogatif lexical,racine,
+nat,num,"un",numéral,racine,"les numéraux précèdent le nom"
+tis,num,"deux",numéral,racine,
+kur,num,"trois",numéral,racine,
+pilt,num,"quatre",numéral,racine,
+xam,num,"cinq",numéral,racine,
+taktut,n,"décision / coupure",nom,takt + -ut (résultatif),"attesté grammaire 2.1"
+taktil,n,"lame / outil-à-trancher",nom,takt + -il (instrumental),
+taktar,n,"décideur / trancheur",nom,takt + -ar (agentif),
+taktas,n,"netteté / esprit de décision",nom,takt + -as (abstrait),
+kʼatakt,v.stat,"être indécis / non-tranché",verbe statif,kʼa- + takt (privatif),"éjective = dégradation, attesté grammaire 1.6"
+stirar,n,"explorateur / marcheur",nom,stir + -ar,
+stirut,n,"avancée / progrès accompli",nom,stir + -ut,
+stiril,n,"véhicule",nom,stir + -il,
+stiras,n,"exploration / le mouvement",nom,stir + -as,
+kʼastir,v.stat,"être immobile / stagnant",verbe statif,kʼa- + stir,
+skimar,n,"témoin / observateur",nom,skim + -ar,
+skimut,n,"observation / preuve vue",nom,skim + -ut,"le résultat d'un skim : la pièce du rang DIR"
+skimil,n,"œil / instrument d'optique",nom,skim + -il,
+skimas,n,"lucidité / vigilance",nom,skim + -as,"« je sais le prix de la lucidité »"
+kʼaskim,v.stat,"être aveugle / sans regard",verbe statif,kʼa- + skim,
+pratar,n,"orateur / porte-parole",nom,prat + -ar,"attesté grammaire 1.6"
+pratut,n,"énoncé / parole dite",nom,prat + -ut,
+pratil,n,"langue / langage (outil)",nom,prat + -il,"le nom de la langue elle-même sera un pratil"
+pratas,n,"discours / le parler",nom,prat + -as,
+kʼaprat,v.stat,"être muet / sans parole",verbe statif,kʼa- + prat,
+kustar,n,"savant / expert",nom,kust + -ar,
+kustut,n,"connaissance acquise",nom,kust + -ut,"un savoir gagné, pas hérité"
+kustil,n,"livre / support de savoir",nom,kust + -il,
+kustas,n,"science / le savoir",nom,kust + -as,
+kʼakust,v.stat,"être ignorant",verbe statif,kʼa- + kust,"« pour un ignorant tout est conspiration »"
+tiktar,n,"penseur",nom,tikt + -ar,
+tiktut,n,"idée / conclusion",nom,tikt + -ut,
+tiktil,n,"modèle / algorithme",nom,tikt + -il,"l'outil-à-penser ; machine incluse"
+tiktas,n,"pensée / raison",nom,tikt + -as,
+kʼatikt,v.stat,"être irréfléchi / stupide",verbe statif,kʼa- + tikt,
+krusar,n,"briseur / destructeur",nom,krus + -ar,
+krusut,n,"ruine / fragment",nom,krus + -ut,"« toutes les splendeurs ne font pas de belles ruines »"
+krusil,n,"marteau / masse (outil)",nom,krus + -il,
+kʼakrus,v.stat,"être intact",verbe statif,kʼa- + krus,"privatif à valeur positive : le non-brisé"
+klapar,n,"artisan / faiseur",nom,klap + -ar,
+klaput,n,"œuvre / chose faite",nom,klap + -ut,
+klapil,n,"outil (générique)",nom,klap + -il,
+klapas,n,"le faire / travail",nom,klap + -as,"« impossible de penser sans faire »"
+kʼaklap,v.stat,"être oisif / inutile",verbe statif,kʼa- + klap,
+niltar,n,"vivant / être vivant",nom,nilt + -ar,
+niltas,n,"vie",nom,nilt + -as,
+kʼanilt,v.stat,"être inerte",verbe statif,kʼa- + nilt,
+murtut,n,"cadavre / dépouille",nom,murt + -ut,
+murtas,n,"la mort",nom,murt + -as,"« la mort est un non-être »"
+kʼamurt,v.stat,"être immortel",verbe statif,kʼa- + murt,
+ktalas,n,"énergie / ardeur",nom,ktal + -as,
+ktalil,n,"foyer / moteur",nom,ktal + -il,
+tursas,n,"flux / courant",nom,turs + -as,
+tursil,n,"canal / conduite",nom,turs + -il,
+starkas,n,"masse / importance",nom,stark + -as,"attesté grammaire 1.6"
+starkar,n,"homme massif / poids lourd (fig.)",nom,stark + -ar,
+kʼastark,v.stat,"être léger / insignifiant",verbe statif,kʼa- + stark,
+xipas,n,"faiblesse",nom,xip + -as,"« la faiblesse, comme la supériorité, doit être prouvée »"
+xurtas,n,"méthode / la voie",nom,xurt + -as,
+xurtar,n,"guide / éclaireur",nom,xurt + -ar,
+riktas,n,"vérité / justesse",nom,rikt + -as,
+riktar,n,"homme droit / juste",nom,rikt + -ar,
+kʼarikt,v.stat,"être faux / tordu",verbe statif,kʼa- + rikt,
+parnas,n,"l'incarné / le corporel",nom,parn + -as,
+pulkas,n,"conformisme / esprit de foule",nom,pulk + -as,"« les foules ne pensent pas, elles réagissent »"
+kʼapulk,v.stat,"être solitaire / hors de la foule",verbe statif,kʼa- + pulk,"privatif à valeur positive assumée"
+silpas,n,"indépendance souveraine",nom,silp + -as,"la qualité-du-chat, lexicalisée"
+maltut,n,"repas",nom,malt + -ut,
+sunkas,n,"repos / sommeil",nom,sunk + -as,
+-a,sfx,"aspect neutre / perfectif",NEUT — slot aspect obligatoire,flexionnel,"voyelle-tampon du template verbal"
+-si,sfx,"aspect répétitif (routine)",REP,flexionnel,"item sonore É1 /si/"
+-tu,sfx,"aspect séquentiel (progression)",SEQ,flexionnel,
+-mu,sfx,"évidentiel direct (vu/vérifié)",DIR,flexionnel,
+-ka,sfx,"évidentiel inférentiel (déduit)",INF,flexionnel,"item sonore É1 /ka/ ; obligatoire au futur et avec tʼu"
+-ri,sfx,"évidentiel rapporté (source citable)",REP.EV,flexionnel,
+-kʼara,sfx,"évidentiel de croyance sans source",CRU,flexionnel,"lourd, éjectif, attire l'accent — la faute épistémique se scande"
+-ar,sfx,"agentif (celui qui fait)",dérivationnel,dérivationnel,"V(C) finale consonantique : le dérivé reste lexical"
+-ut,sfx,"résultatif (chose produite)",dérivationnel,dérivationnel,
+-il,sfx,"instrumental (outil pour)",dérivationnel,dérivationnel,
+-as,sfx,"abstrait (qualité / domaine)",dérivationnel,dérivationnel,
+kʼa-,pfx,"privatif (sans- / dé-)",dérivationnel,dérivationnel,"éjective = dégradation sémantique dans la matière sonore"
+na,pro,"je (1SG)",pronom,grammatical,
+ti,pro,"tu (2SG)",pronom,grammatical,"pas de vouvoiement (contrainte 6)"
+ku,pro,"il / elle (3SG)",pronom,grammatical,"item sonore É1 /kʼu/ réattribué : voir kʼu"
+naru,pro,"nous (1PL)",pronom,na + ru fusionné,
+tiru,pro,"vous (2PL)",pronom,ti + ru fusionné,"pluriel réel uniquement, jamais de politesse"
+kuru,pro,"ils / elles (3PL)",pronom,ku + ru fusionné,
+tʼu,pro,"quelqu'un-que-j'ignore (agent inconnu)",pronom épistémique,grammatical,"force -ka ; seul substitut légal au passif"
+ta,part,"marqueur d'objet (ACC)",particule préposée à l'objet,grammatical,"item sonore É1 /ta/"
+ru,part,"pluriel (postposé au nom)",particule,grammatical,"item sonore É1 /ru/"
+i,part,"lien génitif (N avant GEN)",particule,grammatical,
+u,conj,"et",particule,grammatical,"item sonore É1 /u/ ; homophone assumé, prosodie désambiguïse"
+pa,part,"passé (préverbal, optionnel)",particule TAM,grammatical,
+nu,part,"futur (préverbal) — exige -ka",particule TAM,grammatical,
+xa,part,"négation (préverbale)",particule,grammatical,
+ha,part,"question oui/non (initiale)",particule,grammatical,
+ki,part,"complémenteur / relatif",particule,grammatical,"la subordonnée garde son propre évidentiel (chaîne)"
+pi,prep,"dans / à",préposition,grammatical,
+xu,prep,"vers / pour",préposition,grammatical,
+sa,prep,"depuis / de (origine)",préposition,grammatical,
+pʼa,intj,"foutaise ! (rejet épistémique)",interjection,grammatical,"item sonore É1 /pʼa/ : l'éjective crache le discrédit"
+kʼu,part,"environ / à-peu-près (approximatif)",particule,grammatical,"item sonore É1 /kʼu/ : la précision dégradée porte l'éjective"
+karn,n,"chien",nom,racine,"réinjection trad. ; « les hommes sont des chiens en quête d'un maître »"
+kint,n,"enfant",nom,racine,"réinjection trad."
+mirn,n,"femme",nom,racine,"réinjection trad."
+tirk,n,"oiseau",nom,racine,"réinjection trad."
+krant,n,"montagne",nom,racine,"réinjection trad. ; « la vie est une montagne à gravir et graver »"
+sarp,n,"jardin / terre cultivée",nom,racine,"réinjection trad."
+xast,adv,"hier",adverbe temporel (fin de proposition),racine,"réinjection trad."
+xun,pro.int,"où",interrogatif lexical,racine,"réinjection trad."
+tun,v,"donner / transmettre",radical verbal,racine,"réinjection trad. ; récipiendaire en xu"
+lip,v,"jouer",radical verbal,racine,"réinjection trad."
+rukt,v.stat,"être rouge",verbe statif,racine,"réinjection trad."
+murk,v.stat,"être sombre / noir / caché",verbe statif,racine,"réinjection trad. ; grappe de l'obscur"
+maltus,v.stat,"avoir faim",verbe statif dérivé,malt + -us (désidératif),"réinjection trad."
+kustus,v.stat,"être avide de savoir / curieux",verbe statif dérivé,kust + -us,"réinjection trad. ; bonus du procédé"
+-us,sfx,"désidératif (besoin-de / en-manque-de)",dérivationnel,dérivationnel,"réinjection trad. ; produit des radicaux verbaux fléchissables"
+su,part,"démonstratif proximal (postposé)",particule,grammatical,"réinjection trad."
+ni,part,"démonstratif distal (postposé)",particule,grammatical,"réinjection trad."
