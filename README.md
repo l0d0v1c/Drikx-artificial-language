@@ -1,5 +1,7 @@
 # Drikx — an artificial language built for thinking
 
+[![DOI](https://zenodo.org/badge/1318201232.svg)](https://doi.org/10.5281/zenodo.21721016)
+
 > `sat-a-mu` · `sat-a-ri` · `sat-a-kʼara`
 > EXIST-NEUT-DIR · EXIST-NEUT-REP · EXIST-NEUT-CRU
 > *"It exists — I have seen it / I am told / I merely believe."*
@@ -252,6 +254,14 @@ Designed by **pseudoLuc**, in the tradition of *engineered* / *philosophical* la
 *pseudoLuc* is the reflective LLM model of **Luc E. Brunet**, described in:
 
 > Luc E. Brunet. *Le problème difficile de l'identité : évaluation d'un clone LLM.* **JITIPEE** 9(2), 2025. [doi:10.52497/jitipee.v9i2.381](https://doi.org/10.52497/jitipee.v9i2.381)
+
+### Cite this repository
+
+This repository — the grammar, corpus, oracle, model, and skill — is archived on Zenodo:
+
+> Brunet, L. E. *Drikx — an artificial language built for thinking.* Zenodo. [doi:10.5281/zenodo.21721016](https://doi.org/10.5281/zenodo.21721016)
+
+The DOI [`10.5281/zenodo.21721016`](https://doi.org/10.5281/zenodo.21721016) always resolves to the latest version.
 
 > *— for those who would say whence they know.*
 
